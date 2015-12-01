@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public class Forwarder 
 {

@@ -6,7 +6,7 @@ import static peer1hw.Peer.peersAreEqual;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public class Marker implements Serializable, Comparable<Marker>
 {

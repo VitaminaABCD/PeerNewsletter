@@ -60,7 +60,7 @@ public class ClientHandler implements Runnable
                     printNews();
                     break;
                 case 2:
-                    //writeNews();
+                    writeNews();
                     break;
                 case 3:
                     takeGlobalSnapshot();
@@ -92,9 +92,29 @@ public class ClientHandler implements Runnable
     
     //Si deve sincronizzare sull'Hashset dei vicini
 
+
+    
+    private void writeNews(){
+    String dato = getDato();
+    news.write(myInetSocketAddress, dato, myTimeStamp);
+    String record = "[PEER: " + myInetSocketAddress +
+                         " scrive " + dato + 
+                    "TimeStamp:" +myTimeStamp+ "]";
+        logger.log(Level.INFO, record);
+    
+    }
+
+    private String getDato()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("> Dato: ");
+        return scanner.next();
+    }
+            
     private void printNews()
     {
-        System.out.println("> NEWS DISPONIBILI : " + news.getNews());
+
+        System.out.println("> NEWS DISPONIBILI : " + news.getNews()+"TimeStamp:"+myTimeStamp);
     }
 
     private void takeGlobalSnapshot()

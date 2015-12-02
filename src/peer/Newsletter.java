@@ -34,12 +34,12 @@ public class Newsletter
     
     synchronized String getNews()
     {
-        String tot = null;
+        String dato = null;
         
         for(Map.Entry<InetSocketAddress, String> e : operationsMap.entrySet())
-            tot += e.getValue();
+            dato += e.getValue();
         
-        return tot;
+        return dato;
     }
     
 }

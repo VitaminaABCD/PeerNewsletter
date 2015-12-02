@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
+
 public class ClientHandler implements Runnable
 {
     private HashSet<InetSocketAddress> myNeighbours;

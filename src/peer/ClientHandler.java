@@ -57,21 +57,18 @@ public class ClientHandler implements Runnable
             switch(choice)
             {
                 case 1:
-                    //readNews();
+                    printNews();
                     break;
                 case 2:
                     //writeNews();
                     break;
                 case 3:
-                    printNews();
-                    break;
-                case 4:
                     takeGlobalSnapshot();
                     break;
-                case 5:
+                case 4:
                     printLog();
                     break;
-                case 6:
+                case 5:
                     printNeighbours();
                     break;
                 default:
@@ -85,10 +82,9 @@ public class ClientHandler implements Runnable
         System.out.println("--------------MENU--------------");
         System.out.println("\n\t1) Leggi News");
         System.out.println("\t2) Scrivi News");
-        System.out.println("\t3) Stampa News");
-        System.out.println("\t4) Global Snapshot");
-        System.out.println("\t5) Stampa Log");
-        System.out.println("\t6) Stampa Peer Vicini\n");
+        System.out.println("\t3) Global Snapshot");
+        System.out.println("\t4) Stampa Log");
+        System.out.println("\t5) Stampa Peer Vicini\n");
         System.out.println("--------------------------------");
         System.out.println("\nInserisci il comando:");
     }

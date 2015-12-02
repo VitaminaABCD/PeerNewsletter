@@ -60,7 +60,7 @@ public class ClientHandler implements Runnable
                     printNews();
                     break;
                 case 2:
-                    //writeNews();
+                    writeNews();
                     break;
                 case 3:
                     takeGlobalSnapshot();
@@ -91,7 +91,19 @@ public class ClientHandler implements Runnable
 
     
     //Si deve sincronizzare sull'Hashset dei vicini
+    
+    private void writeNews(){
+    String dato = getDato();
+    
+    }
 
+    private String getDato()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("> Dato: ");
+        return scanner.next();
+    }
+            
     private void printNews()
     {
         System.out.println("> NEWS DISPONIBILI : " + news.getNews());

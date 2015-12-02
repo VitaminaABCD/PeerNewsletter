@@ -13,7 +13,7 @@ import java.util.TreeMap;
 public class Newsletter
 {
     private TreeMap<InetSocketAddress, String> operationsMap;
-    private TimeStamp myTimaStamp;
+    private TimeStamp myTimeStamp;
 
     public Newsletter()
     {

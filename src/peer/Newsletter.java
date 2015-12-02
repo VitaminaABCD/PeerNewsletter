@@ -9,9 +9,11 @@ import java.util.TreeMap;
  *
  * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
+
 public class Newsletter
 {
     private TreeMap<InetSocketAddress, String> operationsMap;
+    private TimeStamp myTimaStamp;
 
     public Newsletter()
     {
@@ -42,7 +44,7 @@ public class Newsletter
         return dato;
     }
     
-        synchronized void write(InetSocketAddress id_addr, String dato)
+        synchronized void write(InetSocketAddress id_addr, String dato, TimeStamp myTimeStamp)
     {
         if (operationsMap.containsKey(id_addr))
         {

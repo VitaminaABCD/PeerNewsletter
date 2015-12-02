@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Marco
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public class UIPeer
 {

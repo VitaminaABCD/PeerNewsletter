@@ -5,7 +5,7 @@ import peer.TimeStamp;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 
 public class OperationMessage extends Message<Double>

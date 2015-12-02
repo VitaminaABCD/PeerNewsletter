@@ -5,7 +5,7 @@ import java.util.logging.LogRecord;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public class StateHandler extends Handler
 {

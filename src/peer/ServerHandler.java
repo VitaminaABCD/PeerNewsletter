@@ -20,7 +20,7 @@ import static peer.Peer.peersAreEqual;
 
 /**
  * Server Handler con ACK
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 
 //Questo thread gestisce solamente Peers o il Join Server.

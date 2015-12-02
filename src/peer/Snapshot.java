@@ -5,7 +5,7 @@ import java.net.InetSocketAddress;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public abstract class Snapshot implements Serializable
 {

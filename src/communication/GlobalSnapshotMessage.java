@@ -6,7 +6,7 @@ import peer.Snapshot;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public class GlobalSnapshotMessage extends Message<Snapshot>
 {

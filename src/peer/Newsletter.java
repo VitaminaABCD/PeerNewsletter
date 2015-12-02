@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public class Newsletter
 {

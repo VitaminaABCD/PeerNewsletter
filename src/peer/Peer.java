@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede piiiii tu scudda!!
  */
+
 public class Peer
 {
     //Magic Numbers

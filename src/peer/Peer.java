@@ -66,7 +66,7 @@ public class Peer
         StateHandler sh = new StateHandler(this.stato);
         try
         {
-            FileHandler fh = new FileHandler("./src/peer/log" + (myPort % 10));
+            FileHandler fh = new FileHandler("/Users/giuliagiuffrida/NetBeansProjects/PeerNewsletter/src/peer/log" + (myPort % 10));
             l.addHandler(fh);
         }
         catch (IOException | SecurityException ex)

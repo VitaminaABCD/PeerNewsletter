@@ -19,10 +19,7 @@ public class TimeStamp implements Serializable, Comparable {
     private int ts;
     private int N_PEER; //PID
 
-//    public TimeStamp() {
-//        
-//        ts=0;
-//    }
+
     public TimeStamp(int N_PEER) {
 
         this.N_PEER = N_PEER;//PID

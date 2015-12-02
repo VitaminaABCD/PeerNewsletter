@@ -8,7 +8,7 @@ import peer.TimeStamp;
  * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 
-public class OperationMessage extends Message<Double>
+public class OperationMessage extends Message<String>
 {   
     private TimeStamp senderTimeStamp;
     private OperationType operationType;
@@ -17,7 +17,7 @@ public class OperationMessage extends Message<Double>
                             InetSocketAddress receiver, 
                             TimeStamp senderTimeStamp,
                             OperationType operationType,
-                            Double body)
+                            String body)
     {
         super(sender, receiver, body);
         this.senderTimeStamp = senderTimeStamp;
@@ -29,15 +29,13 @@ public class OperationMessage extends Message<Double>
         OperationMessage.OperationType type = message.getOperationType();
         String record = null;
         
-        switch (type)
+       switch (type)
         {
-            case READ:
-                record = "[MESSAGGIO -> PEER: " + message.getSender() +
-                         " deposita " + message.getBody() + "]";
-                break;
+            //case READ:
+
             case WRITE:
                 record = "[PEER: " + message.getSender() +
-                         " preleva " + message.getBody() + "]";
+                         " Scrivi " + message.getBody() + "]";
                 break;
             default:
                 record = "FORMATO MESSAGGIO NON RICONOSCIUTO";
@@ -52,14 +50,14 @@ public class OperationMessage extends Message<Double>
     } 
     
     public enum OperationType
-    {
-        READ,
-        WRITE;
-    }
+   {
+//    //READ,
+      WRITE;
+   }
 
     public OperationType getOperationType()
     {
-        return operationType;
+       return operationType;
     }
     
     

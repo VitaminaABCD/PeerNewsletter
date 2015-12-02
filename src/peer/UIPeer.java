@@ -25,7 +25,7 @@ public class UIPeer
      */
     public static void main(String[] args)
     {
-        File file = new File("/Users/giuliagiuffrida/NetBeansProjects/1HW_PeerContoCointestato-master/src/peer1hw/port");
+        File file = new File("/Users/giuliagiuffrida/NetBeansProjects/PeerNewsletter/src/peer/port");
         int myPort = 0;
         
         if (args.length < 1)
@@ -41,7 +41,7 @@ public class UIPeer
             Scanner s = new Scanner(file);
             myPort = s.nextInt();
             
-            //assert (myPort < 10006) && (myPort > 9999);
+            assert (myPort < 10006) && (myPort > 9999);
             
             PrintWriter p = new PrintWriter(file);
             p.print(myPort+1);

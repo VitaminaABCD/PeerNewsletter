@@ -98,7 +98,7 @@ class ServerHandler implements Runnable
     {
         switch (m.getOperationType())
         {
-            case READ:
+            //case READ:
             case WRITE:
                 receiveOperationMessage(m);
                 break;
@@ -125,9 +125,9 @@ class ServerHandler implements Runnable
         
         switch (m.getOperationType())
         {
-            case READ:
+            /*case READ:
                 
-                break;
+                break;*/
             case WRITE:
                 
                 break;

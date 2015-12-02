@@ -42,4 +42,20 @@ public class Newsletter
         return dato;
     }
     
+        synchronized void write(InetSocketAddress id_addr, String dato)
+    {
+        if (operationsMap.containsKey(id_addr))
+        {
+            String temp = operationsMap.get(id_addr);
+            operationsMap.put(id_addr, temp + dato);
+        }
+        else
+            operationsMap.put(id_addr, dato);        
+    }
+    
+//    synchronized void withdraw(InetSocketAddress id_addr, String dato)
+//    {
+//        write(id_addr, dato);
+//    }
+    
 }

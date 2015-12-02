@@ -160,7 +160,7 @@ class ServerHandler implements Runnable
         {
             for(OperationMessage om : messageBuffer)
             {
-                if (myTimeStamp.isCausalHappenedBefore(om.getSenderTimeStamp()))
+                if (myTimeStamp.isHappenedBefore(om.getSenderTimeStamp()))
                 {
                     deliverOperationMessage(om);
                     messageBuffer.remove(om);

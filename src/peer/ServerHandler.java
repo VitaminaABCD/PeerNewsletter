@@ -1,4 +1,4 @@
-package peer1hw;
+package peer;
 
 import communication.Forwarder;
 import communication.GlobalSnapshotMessage;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import java.util.TreeMap;
 import java.util.Map;
 import static communication.OperationMessage.getRecordForMessage;
-import static peer1hw.Peer.peersAreEqual;
+import static peer.Peer.peersAreEqual;
 
 /**
  * Server Handler con ACK
@@ -30,7 +30,7 @@ class ServerHandler implements Runnable
     private HashSet<InetSocketAddress> myNeighbours;
     private Socket incomingSocket;
     
-    private VectorClock myVectorClock;
+    private TimeStamp myTimeStamp;
     private Newsletter news; 
     private State stato;
     private ArrayList<OperationMessage> messageBuffer;
@@ -41,7 +41,7 @@ class ServerHandler implements Runnable
     public ServerHandler(InetSocketAddress myInetSocketAddress,
                          Socket incomingSocket, 
                          HashSet<InetSocketAddress> myNeighbours, 
-                         VectorClock myVectorClock,
+                         TimeStamp myTimeStamp,
                          Newsletter news,
                          State stato,
                          ArrayList<OperationMessage> messageBuffer,
@@ -51,7 +51,7 @@ class ServerHandler implements Runnable
         this.myInetSocketAddress = myInetSocketAddress;
         this.myNeighbours = myNeighbours;
         this.incomingSocket = incomingSocket;
-        this.myVectorClock = myVectorClock;
+        this.myTimeStamp = myTimeStamp;
         this.news = news;
         this.stato = stato;
         this.messageBuffer = messageBuffer;
@@ -98,8 +98,8 @@ class ServerHandler implements Runnable
     {
         switch (m.getOperationType())
         {
-            case DEPOSIT:
-            case WITHDRAW:
+            case READ:
+            case WRITE:
                 receiveOperationMessage(m);
                 break;
             default:
@@ -109,7 +109,7 @@ class ServerHandler implements Runnable
 
     private void receiveOperationMessage(OperationMessage m)
     {
-        if (myVectorClock.isCausalHappenedBefore(m.getSenderVectorClock()))
+        if (myTimeStamp.isHappenedBefore(m.getSenderTimeStamp()))
         {
             deliverOperationMessage(m);
             checkMessageBuffer();
@@ -120,16 +120,16 @@ class ServerHandler implements Runnable
 
     private void deliverOperationMessage(OperationMessage m)
     {
-        int processIndex = m.getSenderVectorClock().getProcessIndex();
-        myVectorClock.updateVectorClockForProcess(processIndex);
+        TimeStamp tmp = m.getSenderTimeStamp();
+        myTimeStamp.updateTs();
         
         switch (m.getOperationType())
         {
-            case DEPOSIT:
-                //conto.deposit(m.getSender(), m.getBody());
+            case READ:
+                
                 break;
-            case WITHDRAW:
-                //conto.withdraw(m.getSender(), m.getBody());
+            case WRITE:
+                
                 break;
             default:
                 System.err.println("FORMATO DELL'OPERAZIONE NON RICONOSCIUTO!");
@@ -160,7 +160,7 @@ class ServerHandler implements Runnable
         {
             for(OperationMessage om : messageBuffer)
             {
-                if (myVectorClock.isCausalHappenedBefore(om.getSenderVectorClock()))
+                if (myTimeStamp.isCausalHappenedBefore(om.getSenderTimeStamp()))
                 {
                     deliverOperationMessage(om);
                     messageBuffer.remove(om);

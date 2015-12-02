@@ -1,4 +1,4 @@
-package peer1hw;
+package peer;
 
 import java.io.Serializable;
 import java.util.LinkedList;

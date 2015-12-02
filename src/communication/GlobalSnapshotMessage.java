@@ -1,8 +1,8 @@
 package communication;
 
 import java.net.InetSocketAddress;
-import peer1hw.Marker;
-import peer1hw.Snapshot;
+import peer.Marker;
+import peer.Snapshot;
 
 /**
  *

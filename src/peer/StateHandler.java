@@ -1,4 +1,4 @@
-package peer1hw;
+package peer;
 
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;

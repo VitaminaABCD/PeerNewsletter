@@ -1,7 +1,7 @@
 package communication;
 
 import java.net.InetSocketAddress;
-import peer1hw.VectorClock;
+import peer.TimeStamp;
 
 /**
  *
@@ -10,17 +10,17 @@ import peer1hw.VectorClock;
 
 public class OperationMessage extends Message<Double>
 {   
-    private VectorClock senderVectorClock;
+    private TimeStamp senderTimeStamp;
     private OperationType operationType;
     
     public OperationMessage(InetSocketAddress sender, 
                             InetSocketAddress receiver, 
-                            VectorClock senderVectorClock,
+                            TimeStamp senderTimeStamp,
                             OperationType operationType,
                             Double body)
     {
         super(sender, receiver, body);
-        this.senderVectorClock = senderVectorClock;
+        this.senderTimeStamp = senderTimeStamp;
         this.operationType = operationType;
     }
     
@@ -31,11 +31,11 @@ public class OperationMessage extends Message<Double>
         
         switch (type)
         {
-            case DEPOSIT:
+            case READ:
                 record = "[MESSAGGIO -> PEER: " + message.getSender() +
                          " deposita " + message.getBody() + "]";
                 break;
-            case WITHDRAW:
+            case WRITE:
                 record = "[PEER: " + message.getSender() +
                          " preleva " + message.getBody() + "]";
                 break;
@@ -46,15 +46,15 @@ public class OperationMessage extends Message<Double>
         return record;
     }
 
-    public VectorClock getSenderVectorClock()
+    public TimeStamp getSenderTimeStamp()
     {
-        return senderVectorClock;
+        return senderTimeStamp;
     } 
     
     public enum OperationType
     {
-        DEPOSIT,
-        WITHDRAW;
+        READ,
+        WRITE;
     }
 
     public OperationType getOperationType()

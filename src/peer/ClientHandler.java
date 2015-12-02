@@ -1,4 +1,4 @@
-package peer1hw;
+package peer;
 
 import communication.Forwarder;
 import communication.GlobalSnapshotMessage;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ClientHandler implements Runnable
 {
     private HashSet<InetSocketAddress> myNeighbours;
-    private VectorClock myVectorClock;
+    private TimeStamp myTimeStamp;
     private Newsletter news; 
     private InetSocketAddress myInetSocketAddress;
     private State stato;
@@ -28,7 +28,7 @@ public class ClientHandler implements Runnable
 
     public ClientHandler(InetSocketAddress myInetSocketAddress, 
                          HashSet<InetSocketAddress> myNeighbours, 
-                         VectorClock myVectorClock, 
+                         TimeStamp myTimeStamp, 
                          Newsletter news,
                          State stato,
                          TreeMap<Marker, Recorder> markMap,
@@ -36,7 +36,7 @@ public class ClientHandler implements Runnable
     {
         this.myInetSocketAddress = myInetSocketAddress;
         this.myNeighbours = myNeighbours;
-        this.myVectorClock = myVectorClock;
+        this.myTimeStamp = myTimeStamp;
         this.news = news;
         this.stato = stato;
         this.globalSnapshotCounter = 0;
@@ -57,13 +57,13 @@ public class ClientHandler implements Runnable
             switch(choice)
             {
                 case 1:
-                    //withdraw();
+                    //readNews();
                     break;
                 case 2:
-                    //deposit();
+                    //writeNews();
                     break;
                 case 3:
-                    printTotal();
+                    printNews();
                     break;
                 case 4:
                     takeGlobalSnapshot();
@@ -83,9 +83,9 @@ public class ClientHandler implements Runnable
     public void printMenu()
     {
         System.out.println("--------------MENU--------------");
-        System.out.println("\n\t1) ");
-        System.out.println("\t2) ");
-        System.out.println("\t3) Stampa il saldo attuale");
+        System.out.println("\n\t1) Leggi News");
+        System.out.println("\t2) Scrivi News");
+        System.out.println("\t3) Stampa News");
         System.out.println("\t4) Global Snapshot");
         System.out.println("\t5) Stampa Log");
         System.out.println("\t6) Stampa Peer Vicini\n");
@@ -95,56 +95,10 @@ public class ClientHandler implements Runnable
 
     
     //Si deve sincronizzare sull'Hashset dei vicini
-    /*private void causalOrderMulticast(OperationMessage.OperationType operationType,
-                                      double amount)
-    {
-        
-        myVectorClock.updateVectorClock();
-        for(InetSocketAddress receiver: myNeighbours)
-        {
-            Message m = new OperationMessage(myInetSocketAddress, 
-                                             receiver, 
-                                             myVectorClock, 
-                                             operationType, 
-                                             amount);
-            Forwarder.sendMessage(m);
-        }
-        
-    }*/
-    
-    /*private void deposit()
-    {
-        double amount = getAmount();
-        //causalOrderMulticast(OperationMessage.OperationType.DEPOSIT, amount);
-        news.deposit(myInetSocketAddress, amount);
-        String record = "[PEER: " + myInetSocketAddress +
-                         " deposita " + amount + "]";
-        //Logger.getLogger(Peer.class.getName()).log(Level.INFO, record);
-        logger.log(Level.INFO, record);
-    }*/
-    
-    /*private void withdraw()
-    {
-        //Possiamo avere saldo negativo.
-        //Non c'è controllo sul quantitativo che possiamo prelevare;
-        double amount = getAmount();
-        causalOrderMulticast(OperationMessage.OperationType.WITHDRAW, amount);
-        news.withdraw(myInetSocketAddress, amount);
-        String record = "[PEER: " + myInetSocketAddress +
-                         " preleva " + amount + "]";
-        Logger.getLogger(Peer.class.getName()).log(Level.INFO, record);
-    }*/
-    
-    /*private double getAmount()
-    {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("> Amount: ");
-        return scanner.nextDouble();
-    }*/
 
-    private void printTotal()
+    private void printNews()
     {
-        System.out.println("> SALDO DISPONIBILE : " + news.getTotal());
+        System.out.println("> NEWS DISPONIBILI : " + news.getNews());
     }
 
     private void takeGlobalSnapshot()

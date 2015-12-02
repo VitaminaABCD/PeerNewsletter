@@ -1,8 +1,8 @@
-package peer1hw;
+package peer;
 
 import java.net.InetSocketAddress;
 import java.util.LinkedList;
-import static peer1hw.Peer.peersAreEqual;
+import static peer.Peer.peersAreEqual;
 
 /**
  *

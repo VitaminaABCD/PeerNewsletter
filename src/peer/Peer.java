@@ -1,4 +1,4 @@
-package peer1hw;
+package peer;
 
 import communication.OperationMessage;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede piiiii tu scuddasti!!
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede piiiii tu scudda!!
  */
 public class Peer
 {
@@ -31,7 +31,7 @@ public class Peer
     private HashSet<InetSocketAddress> myNeighbours;
     
     private Newsletter news;
-    private VectorClock myVectorClock;
+    private TimeStamp myTimeStamp;
     private ArrayList<OperationMessage> messageBuffer;
     
     private State stato;
@@ -39,13 +39,15 @@ public class Peer
     private TreeMap<Marker, Recorder> markerMap;
 
     //Questo peer presuppone che la rete sia a regime per poter fare
-    //operazioni sul news. (Tutti i conti non hanno saldo quando vengono creati
-    //i peer).
+    //operazioni sul news. (Tutte le newsletter non hanno scritto nulla quando 
+    //vengono creati i peer).
+    
+    
     public Peer(int myPort)
     {
         this.myPort = myPort;
         this.news = new Newsletter();
-        this.myVectorClock = new VectorClock(N_PEER, myPort % 10);
+        this.myTimeStamp = new TimeStamp(N_PEER);
         this.messageBuffer = new ArrayList<>();
         this.stato = new State();
         
@@ -63,7 +65,7 @@ public class Peer
         StateHandler sh = new StateHandler(this.stato);
         try
         {
-            FileHandler fh = new FileHandler("./src/peer1hw/log" + (myPort % 10));
+            FileHandler fh = new FileHandler("./src/peer/log" + (myPort % 10));
             l.addHandler(fh);
         }
         catch (IOException | SecurityException ex)
@@ -105,7 +107,7 @@ public class Peer
     {
         new Thread(new ClientHandler(myInetSocketAddress,
                                      myNeighbours, 
-                                     myVectorClock, 
+                                     myTimeStamp, 
                                      news,
                                      stato,
                                      markerMap,
@@ -124,7 +126,7 @@ public class Peer
                 ServerHandler worker = new ServerHandler(myInetSocketAddress, 
                                                          incomingSocket, 
                                                          myNeighbours, 
-                                                         myVectorClock,
+                                                         myTimeStamp,
                                                          news,
                                                          stato,
                                                          messageBuffer,

@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
+
 public class ClientHandler implements Runnable
 {
     private HashSet<InetSocketAddress> myNeighbours;
@@ -91,7 +92,8 @@ public class ClientHandler implements Runnable
 
     
     //Si deve sincronizzare sull'Hashset dei vicini
-
+    
+   
 
     
     private void writeNews(){
@@ -104,6 +106,7 @@ public class ClientHandler implements Runnable
     
     }
 
+
     private String getDato()
     {
         Scanner scanner = new Scanner(System.in);
@@ -113,8 +116,8 @@ public class ClientHandler implements Runnable
             
     private void printNews()
     {
-
         System.out.println("> NEWS DISPONIBILI : " + news.getNews()+"TimeStamp:"+myTimeStamp);
+
     }
 
     private void takeGlobalSnapshot()

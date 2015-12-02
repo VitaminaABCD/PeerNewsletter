@@ -51,7 +51,7 @@ public class OperationMessage extends Message<String>
     
     public enum OperationType
    {
-//    //READ,
+      //READ,
       WRITE;
    }
 

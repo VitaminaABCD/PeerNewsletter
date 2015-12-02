@@ -28,12 +28,24 @@ public class TimeStamp implements Serializable, Comparable {
     }
 
     public synchronized int getTs() {
-        return ts;
+        return this.ts;
+    }
+    
+        public synchronized int getPID() {
+        return N_PEER;
     }
 
     public synchronized void updateTs() {
         ts++;
     }
+    
+    public synchronized String printTs(){
+    
+    return("TimeStamp: " +getTs()+
+                            "\nPID: "+getPID());
+    
+    }
+   
 
 //    public synchronized void updateTs(int value){
 //        ts= (Math.max(ts, value))+1;
@@ -52,8 +64,24 @@ public class TimeStamp implements Serializable, Comparable {
 
     }
 
-    boolean isHappenedBefore(TimeStamp senderTimeStamp) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    synchronized boolean isHappenedBefore(TimeStamp ts) 
+    {
+        return false;
+        //if(this.ts)
     }
-
+    
+    
+    /*synchronized public boolean isCausalHappenedBefore(TimeStamp ts)
+    {
+        if (this.ts != ts.getTs()-1)
+            return false;
+        else
+            while (true)
+                if((ts != null) && 
+                   (this.ts < ts.getTs()))
+                    return false;
+        
+        //return true;
+    }*/
+    
 }

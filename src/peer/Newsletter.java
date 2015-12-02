@@ -39,14 +39,17 @@ public class Newsletter
         String dato = null;
         
         for(Map.Entry<InetSocketAddress, String> e : operationsMap.entrySet())
+            
             dato += e.getValue();
+            
+            //dato.equals(e.getValue());
         
         return dato;
     }
     
-        synchronized void write(InetSocketAddress id_addr, String dato, TimeStamp myTimeStamp)
+        synchronized void write(InetSocketAddress id_addr, String dato)
     {
-        if (operationsMap.containsKey(id_addr))
+        if (operationsMap.containsKey(id_addr)) //ritorna true se la mappa continene l'indirizzo
         {
             String temp = operationsMap.get(id_addr);
             operationsMap.put(id_addr, temp + dato);

@@ -93,12 +93,29 @@ public class ClientHandler implements Runnable
     
     //Si deve sincronizzare sull'Hashset dei vicini
     
+    private void causalOrder(OperationMessage.OperationType operationType,
+                                      String dato)
+    {
+        
+        myTimeStamp.updateTs();
+        for(InetSocketAddress receiver: myNeighbours)
+        {
+            Message m = new OperationMessage(myInetSocketAddress, 
+                                             receiver, 
+                                             myTimeStamp, 
+                                             operationType, 
+                                             dato);
+            Forwarder.sendMessage(m);
+        }
+        
+    }
+    
     private void writeNews(){
     String dato = getDato();
-    news.write(myInetSocketAddress, dato,myTimeStamp);
+    causalOrder(OperationMessage.OperationType.WRITE, dato);
+    news.write(myInetSocketAddress, dato);
     String record = "[PEER: " + myInetSocketAddress +
-                         " scrive " + dato + 
-                    "TimeStamp:" +myTimeStamp+ "]";
+                         "\nscrive: " +dato+ "\n" +myTimeStamp.printTs()+"]";
         logger.log(Level.INFO, record);
     
     }
@@ -106,13 +123,13 @@ public class ClientHandler implements Runnable
     private String getDato()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("> Dato: ");
+        System.out.println("> Dato: \b");
         return scanner.next();
     }
             
     private void printNews()
     {
-        System.out.println("> NEWS DISPONIBILI : " + news.getNews()+ "TimeStamp:"+myTimeStamp);
+        System.out.println("> NEWS DISPONIBILI : " + news.getNews()+ "\nTimeStamp:"+myTimeStamp);
     }
 
     private void takeGlobalSnapshot()

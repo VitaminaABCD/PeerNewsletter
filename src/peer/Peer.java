@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 public class Peer
 {
-    //Magic Numbers
+   
     private static final int nThread = 100;
     private static final int N_PEER = 6;
     
@@ -75,7 +75,7 @@ public class Peer
         }
         
         l.addHandler(sh);
-        l.setUseParentHandlers(false); // non logga nello stream System.out
+        l.setUseParentHandlers(false); 
         
         return l;
     }

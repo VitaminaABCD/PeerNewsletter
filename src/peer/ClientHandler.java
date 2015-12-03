@@ -92,7 +92,7 @@ public class ClientHandler implements Runnable
 
     
     //Si deve sincronizzare sull'Hashset dei vicini
-    
+
     private void causalOrder(OperationMessage.OperationType operationType,
                                       String dato)
     {
@@ -112,13 +112,15 @@ public class ClientHandler implements Runnable
     
     private void writeNews(){
     String dato = getDato();
-    causalOrder(OperationMessage.OperationType.WRITE, dato);
+    //causalOrder(OperationMessage.OperationType.WRITE, dato);
     news.write(myInetSocketAddress, dato);
+
     String record = "[PEER: " + myInetSocketAddress +
                          "\nscrive: " +dato+ "\n" +myTimeStamp.printTs()+"]";
         logger.log(Level.INFO, record);
     
     }
+
 
     private String getDato()
     {
@@ -129,7 +131,10 @@ public class ClientHandler implements Runnable
             
     private void printNews()
     {
-        System.out.println("> NEWS DISPONIBILI : " + news.getNews()+ "\nTimeStamp:"+myTimeStamp);
+
+        System.out.println("> NEWS DISPONIBILI : " + news.getNews()+"TimeStamp:"+myTimeStamp);
+
+
     }
 
     private void takeGlobalSnapshot()

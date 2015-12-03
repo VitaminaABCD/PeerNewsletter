@@ -58,9 +58,4 @@ public class Newsletter
             operationsMap.put(id_addr, dato);        
     }
     
-//    synchronized void withdraw(InetSocketAddress id_addr, String dato)
-//    {
-//        write(id_addr, dato);
-//    }
-    
 }
